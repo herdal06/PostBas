@@ -8,4 +8,6 @@
     <string name="user_image">user image</string>
     <string name="user_name">user name</string>
     <string name="username_example">yraigatt3</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_message">Error while loading the data!</string>
 </resources>
