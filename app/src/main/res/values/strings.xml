@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">PostList</string>
+    <string name="post_title_example">His mother had always taught him</string>
+    <string name="post_body_example">His mother had always taught him not to ever think of himself as better than others. He\'d tried to live by this motto. He never looked down on those who were less fortunate or who had less money than him. But the stupidity of the group of people he was talking to made him change his mind.</string>
+    <string name="reaction">reaction</string>
+    <string name="comment">comment</string>
+    <string name="add_to_bookmark">add to bookmark</string>
+    <string name="user_image">user image</string>
+    <string name="user_name">user name</string>
+    <string name="username_example">yraigatt3</string>
 </resources>
