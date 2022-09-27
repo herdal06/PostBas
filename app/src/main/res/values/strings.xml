@@ -10,4 +10,5 @@
     <string name="username_example">yraigatt3</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error_message">Error while loading the data!</string>
+    <string name="comment_example">What terrific math skills you’re showing!</string>
 </resources>
