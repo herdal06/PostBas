@@ -12,4 +12,9 @@
     <string name="error_message">Error while loading the data!</string>
     <string name="comment_example">What terrific math skills you’re showing!</string>
     <string name="comments">Comments</string>
+    <string name="full_name_example">Terry Medhurst</string>
+    <string name="mail_example">atuny0@sohu.com</string>
+    <string name="birth_date_example">2000-12-25</string>
+    <string name="phone_number_example">+63 791 675 8914</string>
+    <string name="address_example">1745 T Street Southeast</string>
 </resources>
