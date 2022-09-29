@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.herdal.postlist.databinding.FragmentPostDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PostDetailsFragment : Fragment() {
 
     private var _binding: FragmentPostDetailsBinding? = null
