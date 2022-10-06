@@ -17,7 +17,7 @@ class HomeViewModel @Inject constructor(
     private val postUseCases: PostUseCases
 ) : ViewModel() {
 
-    private val _allPosts = MutableStateFlow<Resource<PostResponse>>(Resource.Nothing2)
+    private val _allPosts = MutableStateFlow<Resource<PostResponse>>(Resource.Loading)
     val allPosts: StateFlow<Resource<PostResponse>> = _allPosts
 
     init {
@@ -36,7 +36,6 @@ class HomeViewModel @Inject constructor(
                 is Resource.Error -> {
                     _allPosts.value = res
                 }
-                else -> {}
             }
         }.launchIn(viewModelScope)
     }
