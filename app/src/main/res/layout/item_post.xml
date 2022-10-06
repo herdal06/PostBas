@@ -15,8 +15,10 @@
             android:id="@+id/tv_post_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/extra_small_margin"
             android:layout_marginTop="@dimen/large_margin"
             android:ellipsize="end"
+            android:gravity="start"
             android:maxLines="1"
             android:text="@string/post_title_example"
             android:textColor="@color/post_title_text_color"
@@ -28,6 +30,7 @@
             android:id="@+id/tv_post_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/extra_small_margin"
             android:layout_marginTop="@dimen/extra_small_margin"
             android:ellipsize="end"
             android:maxLines="3"
@@ -40,13 +43,13 @@
             android:id="@+id/linearLayoutIcons"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginTop="@dimen/large_margin"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_post_body">
+            app:layout_constraintTop_toBottomOf="@+id/rvPostTags">
 
             <ImageView
                 android:id="@+id/ic_reaction"
@@ -100,6 +103,18 @@
                 android:text="@string/username_example"
                 android:textColor="@color/username_text_color" />
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPostTags"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_post_body"
+            tools:listitem="@layout/item_tag" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

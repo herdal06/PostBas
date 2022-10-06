@@ -14,4 +14,5 @@
     <color name="post_title_text_color">#0a0a0a</color>
     <color name="post_body_text_color">#747577</color>
     <color name="post_icons_color">#747577</color>
+    <color name="tag_border_color">#84898E</color>
 </resources>
