@@ -8,6 +8,7 @@ class PostViewHolder(private val binding: ItemPostBinding) : RecyclerView.ViewHo
     fun bind(post: Post) {
         binding.apply {
             tvPostTitle.text = post.title
+            tvPostBody.text = post.body
         }
     }
 }
