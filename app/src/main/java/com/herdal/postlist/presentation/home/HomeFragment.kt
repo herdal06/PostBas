@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.herdal.postlist.databinding.FragmentHomeBinding
 import com.herdal.postlist.presentation.home.adapter.PostAdapter
@@ -27,7 +28,7 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels()
     private val postAdapter: PostAdapter by lazy {
-        PostAdapter()
+        PostAdapter(::navigateToPostDetails)
     }
 
     override fun onCreateView(
@@ -65,9 +66,13 @@ class HomeFragment : Fragment() {
                     binding.tvErrorMessage.visibility = View.VISIBLE
                     binding.rvPosts.visibility = View.GONE
                 }
-                else -> {}
             }
         }
+    }
+
+    private fun navigateToPostDetails(id: Int) {
+        val action = HomeFragmentDirections.actionHomeFragmentToPostDetailsFragment(id)
+        findNavController().navigate(action)
     }
 
     private fun FragmentHomeBinding.bindAdapter(postAdapter: PostAdapter) = binding.apply {

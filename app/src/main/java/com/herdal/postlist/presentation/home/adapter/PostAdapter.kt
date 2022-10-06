@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import com.herdal.postlist.data.remote.model.post.Post
 import com.herdal.postlist.databinding.ItemPostBinding
 
-class PostAdapter : ListAdapter<Post, PostViewHolder>(DiffCallback) {
+class PostAdapter(private val onClickPost: ((id: Int) -> Unit)?) :
+    ListAdapter<Post, PostViewHolder>(DiffCallback) {
 
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<Post>() {
@@ -27,7 +28,7 @@ class PostAdapter : ListAdapter<Post, PostViewHolder>(DiffCallback) {
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ), onClickPost
         )
     }
 

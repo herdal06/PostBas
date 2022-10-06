@@ -4,11 +4,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.herdal.postlist.data.remote.model.post.Post
 import com.herdal.postlist.databinding.ItemPostBinding
 
-class PostViewHolder(private val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
+class PostViewHolder(
+    private val binding: ItemPostBinding,
+    private val onClickPost: ((id: Int) -> Unit)?
+) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
         binding.apply {
             tvPostTitle.text = post.title
             tvPostBody.text = post.body
+            icComment.setOnClickListener {
+                onClickPost?.invoke(post.id)
+            }
         }
     }
 }
