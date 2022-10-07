@@ -25,5 +25,20 @@
         <argument
             android:name="postId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_postDetailsFragment_to_userDetailsFragment"
+            app:destination="@id/userDetailsFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/userDetailsFragment"
+        android:name="com.herdal.postlist.presentation.user_details.UserDetailsFragment"
+        android:label="fragment_user_details"
+        tools:layout="@layout/fragment_user_details" >
+        <action
+            android:id="@+id/action_userDetailsFragment_to_postDetailsFragment"
+            app:destination="@id/postDetailsFragment" />
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </dialog>
 </navigation>

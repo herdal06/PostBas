@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.herdal.postlist.databinding.FragmentPostDetailsBinding
 import com.herdal.postlist.presentation.post_details.adapter.PostCommentAdapter
@@ -27,7 +28,7 @@ class PostDetailsFragment : Fragment() {
     private val viewModel: PostDetailsViewModel by viewModels()
     private val navigationArgs: PostDetailsFragmentArgs by navArgs()
     private val postCommentAdapter: PostCommentAdapter by lazy {
-        PostCommentAdapter()
+        PostCommentAdapter(::navigateToUserDetails)
     }
 
     override fun onCreateView(
@@ -92,6 +93,12 @@ class PostDetailsFragment : Fragment() {
                 adapter = postCommentAdapter
             }
         }
+
+    private fun navigateToUserDetails(id: Int) {
+        val action =
+            PostDetailsFragmentDirections.actionPostDetailsFragmentToUserDetailsFragment(id)
+        findNavController().navigate(action)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

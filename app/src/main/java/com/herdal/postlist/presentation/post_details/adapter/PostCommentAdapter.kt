@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import com.herdal.postlist.data.remote.model.comment.Comment
 import com.herdal.postlist.databinding.ItemCommentBinding
 
-class PostCommentAdapter : ListAdapter<Comment, PostCommentViewHolder>(DiffCallback) {
+class PostCommentAdapter(private val onClickUser: ((id: Int) -> Unit)?) :
+    ListAdapter<Comment, PostCommentViewHolder>(DiffCallback) {
 
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<Comment>() {
@@ -25,7 +26,7 @@ class PostCommentAdapter : ListAdapter<Comment, PostCommentViewHolder>(DiffCallb
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ), onClickUser
         )
 
     override fun onBindViewHolder(holder: PostCommentViewHolder, position: Int) {
