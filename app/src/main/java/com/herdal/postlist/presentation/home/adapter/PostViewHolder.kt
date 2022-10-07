@@ -15,6 +15,9 @@ class PostViewHolder(
             icComment.setOnClickListener {
                 onClickPost?.invoke(post.id)
             }
+            itemView.setOnClickListener {
+                onClickPost?.invoke(post.id)
+            }
         }
     }
 }

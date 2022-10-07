@@ -26,6 +26,21 @@ class PostDetailsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        manageUI()
+    }
+
+    private fun manageUI() = binding.apply {
+        includePostItem.apply {
+            tvPostBody.apply {
+                // disable maxLines and ellipsize
+                this.maxLines = Int.MAX_VALUE
+                this.ellipsize = null
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
