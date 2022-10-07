@@ -1,15 +1,20 @@
 package com.herdal.postlist.presentation.post_details
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.herdal.postlist.databinding.FragmentPostDetailsBinding
 import com.herdal.postlist.presentation.post_details.adapter.PostCommentAdapter
+import com.herdal.postlist.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PostDetailsFragment : Fragment() {
@@ -41,6 +46,32 @@ class PostDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.bindAdapter(postCommentAdapter = postCommentAdapter)
         manageUI()
+        collectData()
+    }
+
+    private fun collectData() = lifecycleScope.launch {
+        viewModel.allComments.collect {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.loadingBarPostDetails.visibility = View.VISIBLE
+                    binding.tvErrorMessagePostDetails.visibility = View.GONE
+                    binding.rvPostComments.visibility = View.GONE
+                }
+                is Resource.Success -> {
+                    postCommentAdapter.submitList(it.data.comments)
+                    binding.loadingBarPostDetails.visibility = View.GONE
+                    binding.tvErrorMessagePostDetails.visibility = View.GONE
+                    binding.rvPostComments.visibility = View.VISIBLE
+                    Log.d("HomeFragment", "$it.data.posts")
+                }
+                is Resource.Error -> {
+                    binding.loadingBarPostDetails.visibility = View.GONE
+                    binding.tvErrorMessagePostDetails.visibility = View.VISIBLE
+                    binding.rvPostComments.visibility = View.GONE
+                }
+            }
+        }
+        //viewModel.getAllPostComments(getPostId())
     }
 
     private fun manageUI() = binding.apply {
