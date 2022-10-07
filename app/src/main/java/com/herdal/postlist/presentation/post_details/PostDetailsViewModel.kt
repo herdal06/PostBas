@@ -22,10 +22,6 @@ class PostDetailsViewModel @Inject constructor(
     private val _allComments = MutableStateFlow<Resource<CommentResponse>>(Resource.Loading)
     val allComments: StateFlow<Resource<CommentResponse>> = _allComments
 
-    init {
-        getAllPostComments(10)
-    }
-
     fun getAllPostComments(id: Int) {
         commentUseCases.getPostCommentsUseCase.invoke(id, 10, 0).onEach { res ->
             when (res) {

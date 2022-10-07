@@ -1,7 +1,6 @@
 package com.herdal.postlist.presentation.post_details
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,7 +45,12 @@ class PostDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.bindAdapter(postCommentAdapter = postCommentAdapter)
         manageUI()
+        getAllPostComments()
         collectData()
+    }
+
+    private fun getAllPostComments() {
+        viewModel.getAllPostComments(getPostId())
     }
 
     private fun collectData() = lifecycleScope.launch {
@@ -62,7 +66,6 @@ class PostDetailsFragment : Fragment() {
                     binding.loadingBarPostDetails.visibility = View.GONE
                     binding.tvErrorMessagePostDetails.visibility = View.GONE
                     binding.rvPostComments.visibility = View.VISIBLE
-                    Log.d("HomeFragment", "$it.data.posts")
                 }
                 is Resource.Error -> {
                     binding.loadingBarPostDetails.visibility = View.GONE
@@ -71,7 +74,6 @@ class PostDetailsFragment : Fragment() {
                 }
             }
         }
-        //viewModel.getAllPostComments(getPostId())
     }
 
     private fun manageUI() = binding.apply {
