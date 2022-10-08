@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.herdal.postlist.data.remote.model.post.Post
 import com.herdal.postlist.databinding.FragmentPostDetailsBinding
 import com.herdal.postlist.presentation.post_details.adapter.PostCommentAdapter
 import com.herdal.postlist.util.Resource
@@ -45,16 +46,40 @@ class PostDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.bindAdapter(postCommentAdapter = postCommentAdapter)
+        collectComments()
+        collectPost()
         manageUI()
+        getPostById()
         getAllPostComments()
-        collectData()
+    }
+
+    private fun collectPost() = lifecycleScope.launch {
+        viewModel.post.collect {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.loadingBarPostDetails.visibility = View.VISIBLE
+                    binding.tvErrorMessagePostDetails.visibility = View.GONE
+                }
+                is Resource.Success -> {
+                    it.data.let { post ->
+                        setupUI(post)
+                    }
+                    binding.loadingBarPostDetails.visibility = View.GONE
+                    binding.tvErrorMessagePostDetails.visibility = View.GONE
+                }
+                is Resource.Error -> {
+                    binding.loadingBarPostDetails.visibility = View.GONE
+                    binding.tvErrorMessagePostDetails.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 
     private fun getAllPostComments() {
         viewModel.getAllPostComments(getPostId())
     }
 
-    private fun collectData() = lifecycleScope.launch {
+    private fun collectComments() = lifecycleScope.launch {
         viewModel.allComments.collect {
             when (it) {
                 is Resource.Loading -> {
@@ -77,6 +102,11 @@ class PostDetailsFragment : Fragment() {
         }
     }
 
+    private fun setupUI(post: Post) = binding.includePostItem.apply {
+        tvPostTitle.text = post.title
+        tvPostBody.text = post.body
+    }
+
     private fun manageUI() = binding.apply {
         includePostItem.apply {
             tvPostBody.apply {
@@ -85,6 +115,10 @@ class PostDetailsFragment : Fragment() {
                 this.ellipsize = null
             }
         }
+    }
+
+    private fun getPostById() {
+        viewModel.getPostById(getPostId())
     }
 
     private fun FragmentPostDetailsBinding.bindAdapter(postCommentAdapter: PostCommentAdapter) =
