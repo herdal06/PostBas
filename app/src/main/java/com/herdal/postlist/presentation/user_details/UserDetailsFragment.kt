@@ -11,6 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.herdal.postlist.data.remote.model.user.User
 import com.herdal.postlist.databinding.FragmentUserDetailsBinding
 import com.herdal.postlist.util.Resource
+import com.herdal.postlist.util.extensions.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -49,6 +50,7 @@ class UserDetailsFragment : BottomSheetDialogFragment() {
         tvUserPhone.text = user.phone
         tvBirthDate.text = user.birthDate
         tvAddress.text = user.address.address
+        ivUserDetails.loadImage(user.image)
     }
 
     private fun collectUser() = lifecycleScope.launch {
