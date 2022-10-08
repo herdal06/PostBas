@@ -62,6 +62,7 @@ class UserDetailsFragment : BottomSheetDialogFragment() {
                         binding.tvErrorMessageUserDetails.visibility = View.GONE
                     }
                     is Resource.Success -> {
+                        makeUIVisible()
                         it.data.let { user ->
                             setupUI(user)
                         }
@@ -75,6 +76,16 @@ class UserDetailsFragment : BottomSheetDialogFragment() {
                 }
             }
         }
+    }
+
+    private fun makeUIVisible() = binding.apply {
+        ivUserDetails.visibility = View.VISIBLE
+        tvUsernameDetails.visibility = View.VISIBLE
+        tvUserDetailsFullName.visibility = View.VISIBLE
+        tvUserMail.visibility = View.VISIBLE
+        tvUserPhone.visibility = View.VISIBLE
+        tvBirthDate.visibility = View.VISIBLE
+        tvAddress.visibility = View.VISIBLE
     }
 
     private fun getUserById() {
