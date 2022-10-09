@@ -21,5 +21,6 @@
     <!-- bottomSheetStyle -->
     <style name="AppModelStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet_shape</item>
+        <item name="behavior_peekHeight">300dp</item>
     </style>
 </resources>
