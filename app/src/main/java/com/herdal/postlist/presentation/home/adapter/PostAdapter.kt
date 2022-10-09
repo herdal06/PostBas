@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import com.herdal.postlist.data.remote.model.post.Post
 import com.herdal.postlist.databinding.ItemPostBinding
 
-class PostAdapter(private val onClickPost: ((id: Int) -> Unit)?) :
+class PostAdapter(
+    private val onClickPost: ((postId: Int, userId: Int) -> Unit)?
+) :
     ListAdapter<Post, PostViewHolder>(DiffCallback) {
 
     companion object {

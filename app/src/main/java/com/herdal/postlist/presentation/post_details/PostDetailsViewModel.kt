@@ -4,8 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.herdal.postlist.data.remote.model.comment.CommentResponse
 import com.herdal.postlist.data.remote.model.post.Post
+import com.herdal.postlist.data.remote.model.user.User
 import com.herdal.postlist.domain.use_case.comment.CommentUseCases
 import com.herdal.postlist.domain.use_case.post.PostUseCases
+import com.herdal.postlist.domain.use_case.user.UserUseCases
 import com.herdal.postlist.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -15,11 +17,15 @@ import javax.inject.Inject
 @HiltViewModel
 class PostDetailsViewModel @Inject constructor(
     private val postUseCases: PostUseCases,
-    private val commentUseCases: CommentUseCases
+    private val commentUseCases: CommentUseCases,
+    private val userUseCases: UserUseCases
 ) : ViewModel() {
 
     private val _post = MutableStateFlow<Resource<Post>>(Resource.Loading)
     val post: StateFlow<Resource<Post>> = _post
+
+    private val _user = MutableStateFlow<Resource<User>>(Resource.Loading)
+    val user: StateFlow<Resource<User>> = _user
 
     private val _allComments = MutableStateFlow<Resource<CommentResponse>>(Resource.Loading)
     val allComments: StateFlow<Resource<CommentResponse>> = _allComments
@@ -28,6 +34,13 @@ class PostDetailsViewModel @Inject constructor(
         postUseCases.getPostByIdUseCase.invoke(id).catch {
         }.collect {
             _post.value = it
+        }
+    }
+
+    fun getUserById(id: Int) = viewModelScope.launch {
+        userUseCases.getUserByIdUseCase.invoke(id).catch {
+        }.collect {
+            _user.value = it
         }
     }
 

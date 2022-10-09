@@ -24,10 +24,15 @@
             app:destination="@id/homeFragment" />
         <argument
             android:name="postId"
-            app:argType="integer" />
+            app:argType="integer"
+            android:defaultValue="1" />
         <action
             android:id="@+id/action_postDetailsFragment_to_userDetailsFragment"
             app:destination="@id/userDetailsFragment" />
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
     <dialog
         android:id="@+id/userDetailsFragment"

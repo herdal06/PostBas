@@ -70,8 +70,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun navigateToPostDetails(id: Int) {
-        val action = HomeFragmentDirections.actionHomeFragmentToPostDetailsFragment(id)
+    private fun navigateToPostDetails(postId: Int, userId: Int) {
+        val action = HomeFragmentDirections.actionHomeFragmentToPostDetailsFragment(postId, userId)
         findNavController().navigate(action)
     }
 

@@ -11,9 +11,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.herdal.postlist.data.remote.model.post.Post
+import com.herdal.postlist.data.remote.model.user.User
 import com.herdal.postlist.databinding.FragmentPostDetailsBinding
 import com.herdal.postlist.presentation.post_details.adapter.PostCommentAdapter
 import com.herdal.postlist.util.Resource
+import com.herdal.postlist.util.extensions.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -44,14 +46,22 @@ class PostDetailsFragment : Fragment() {
 
     private fun getPostId(): Int = navigationArgs.postId
 
+    private fun getUserId(): Int = navigationArgs.userId
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.bindAdapter(postCommentAdapter = postCommentAdapter)
         collectComments()
         collectPost()
+        collectUser()
         manageUI()
         getPostById()
+        getUserById()
         getAllPostComments()
+    }
+
+    private fun getUserById() {
+        viewModel.getUserById(getUserId())
     }
 
     private fun collectPost() = lifecycleScope.launch {
@@ -65,6 +75,29 @@ class PostDetailsFragment : Fragment() {
                     it.data.let { post ->
                         makePostVisible()
                         setupUI(post)
+                    }
+                    binding.loadingBarPostDetails.visibility = View.GONE
+                    binding.tvErrorMessagePostDetails.visibility = View.GONE
+                }
+                is Resource.Error -> {
+                    binding.loadingBarPostDetails.visibility = View.GONE
+                    binding.tvErrorMessagePostDetails.visibility = View.VISIBLE
+                }
+            }
+        }
+    }
+
+    private fun collectUser() = lifecycleScope.launch {
+        viewModel.user.collect {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.loadingBarPostDetails.visibility = View.VISIBLE
+                    binding.tvErrorMessagePostDetails.visibility = View.GONE
+                }
+                is Resource.Success -> {
+                    it.data.let { user ->
+                        makePostVisible()
+                        setupUserViews(user)
                     }
                     binding.loadingBarPostDetails.visibility = View.GONE
                     binding.tvErrorMessagePostDetails.visibility = View.GONE
@@ -111,6 +144,11 @@ class PostDetailsFragment : Fragment() {
     private fun setupUI(post: Post) = binding.includePostItem.apply {
         tvPostTitle.text = post.title
         tvPostBody.text = post.body
+    }
+
+    private fun setupUserViews(user: User) = binding.includePostItem.apply {
+        tvPostUserName.text = user.username
+        ivUserImage.loadImage(user.image)
     }
 
     private fun manageUI() = binding.apply {
