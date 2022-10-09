@@ -15,7 +15,7 @@ class PostCommentViewHolder(
         tvCommentUserName.setOnClickListener {
             onClickUser?.invoke(comment.user.id)
         }
-        ivUserComment.setOnClickListener {
+        itemView.setOnClickListener {
             onClickUser?.invoke(comment.user.id)
         }
     }

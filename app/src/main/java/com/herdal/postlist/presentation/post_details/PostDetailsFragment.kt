@@ -62,6 +62,7 @@ class PostDetailsFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     it.data.let { post ->
+                        makePostVisible()
                         setupUI(post)
                     }
                     binding.loadingBarPostDetails.visibility = View.GONE
@@ -73,6 +74,10 @@ class PostDetailsFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun makePostVisible() {
+        binding.includePostItem.root.visibility = View.VISIBLE
     }
 
     private fun getAllPostComments() {
