@@ -86,23 +86,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/iv_user_image"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:contentDescription="@string/user_image"
-                tools:ignore="ImageContrastCheck"
-                tools:srcCompat="@tools:sample/avatars" />
+            <!-- card view for rounded image view -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                app:cardCornerRadius="250dp">
+
+                <ImageView
+                    android:id="@+id/iv_user_image"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/user_image"
+                    tools:ignore="ImageContrastCheck" />
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/tv_post_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="@dimen/triple_extra_small_margin"
+                android:layout_marginStart="@dimen/double_extra_small_margin"
                 android:contentDescription="@string/user_name"
-                android:text="@string/username_example"
-                android:textColor="@color/username_text_color" />
+                android:textColor="@color/username_text_color"
+                android:textSize="@dimen/large_size" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
