@@ -18,9 +18,6 @@ class PostViewHolder(
             itemView.setOnClickListener {
                 onClickPost?.invoke(post.id, post.userId)
             }
-            tvPostUserName.setOnClickListener {
-                onClickPost?.invoke(post.id, post.userId)
-            }
         }
     }
 }

@@ -15,4 +15,5 @@
     <color name="post_body_text_color">#1E1E1E</color>
     <color name="post_icons_color">#747577</color>
     <color name="tag_border_color">#84898E</color>
+    <color name="favorite_icon_color">#F63131</color>
 </resources>

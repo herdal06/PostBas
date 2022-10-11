@@ -18,4 +18,5 @@
     <string name="phone_number_example">+63 791 675 8914</string>
     <string name="address_example">1745 T Street Southeast</string>
     <string name="tag_example">fiction</string>
+    <string name="no_comment_message">No comment on this post.</string>
 </resources>
