@@ -73,6 +73,7 @@ class PostDetailsFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     it.data.let { post ->
+                        showUserDetailsOnClickUser(it.data.userId)
                         makePostVisible()
                         setupUI(post)
                     }
@@ -149,6 +150,12 @@ class PostDetailsFragment : Fragment() {
     private fun setupUserViews(user: User) = binding.includePostItem.apply {
         tvPostUserName.text = user.username
         ivUserImage.loadImage(user.image)
+    }
+
+    private fun showUserDetailsOnClickUser(id: Int) = binding.includePostItem.apply {
+        linearLayoutUser.setOnClickListener {
+            navigateToUserDetails(id)
+        }
     }
 
     private fun manageUI() = binding.apply {

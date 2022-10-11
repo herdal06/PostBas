@@ -25,7 +25,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getAllPosts() {
-        postUseCases.getAllPostsUseCase(10, 10).onEach { res ->
+        postUseCases.getAllPostsUseCase(20, 0).onEach { res ->
             when (res) {
                 is Resource.Success -> {
                     _allPosts.value = res
