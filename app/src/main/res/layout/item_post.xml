@@ -34,6 +34,7 @@
             android:layout_marginTop="@dimen/extra_small_margin"
             android:ellipsize="end"
             android:maxLines="3"
+            android:textSize="@dimen/large_size"
             android:paddingHorizontal="@dimen/small_padding"
             android:text="@string/post_body_example"
             android:textColor="@color/post_body_text_color"

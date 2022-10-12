@@ -49,6 +49,7 @@
             android:ellipsize="end"
             android:maxLines="3"
             android:padding="@dimen/small_padding"
+            android:textSize="@dimen/large_size"
             android:text="@string/comment_example"
             android:textColor="@color/post_body_text_color"
             app:layout_constraintBottom_toBottomOf="parent"
