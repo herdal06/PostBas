@@ -3,7 +3,7 @@
 <p align="center">  
 This is a basic Android application that shows posts and their details, user comments on posts and user profiles, based on MVVM architecture.
 <br/>
-<p align="center">I used <a href="https://dummyjson.com/">DummyJson</a> for building this application.</p>
+<p align="center">I used <a href="https://dummyjson.com/">DummyJson</a> API for building this application.</p>
 </p>
 
 #### App Screenshots
