@@ -6,6 +6,11 @@ This is a basic Android application that shows posts and their details, user com
 <p align="center">I used <a href="https://dummyjson.com/">DummyJson</a> API for building this application.</p>
 </p>
 
+
+## App Gif
+<img src="https://github.com/herdal06/PostBase/blob/master/arts/app.gif?raw=true"  width="25%"/>
+
+
 #### App Screenshots
 
 | Home | Post Details | User Details |
@@ -13,9 +18,6 @@ This is a basic Android application that shows posts and their details, user com
 | ![Fist](https://github.com/herdal06/PostBase/blob/master/screenshots/home.png?raw=true) | ![3](https://github.com/herdal06/PostBase/blob/master/screenshots/post_details.png?raw=true) | ![3](https://github.com/herdal06/PostBase/blob/master/screenshots/on_click_user.png?raw=true)
 | Home Dark Mode | Post Details Dark Mode | User Details Dark Mode |
 | ![4](https://github.com/herdal06/PostBase/blob/master/screenshots/home_dark.png?raw=true) | ![5](https://github.com/herdal06/PostBase/blob/master/screenshots/post_details_dark.png?raw=true) | ![3](https://github.com/herdal06/PostBase/blob/master/screenshots/on_click_user_dark.png?raw=true)
-
-
-<img src="/arts/rickandmorty.gif" align="right"  width="24%"/>
 
 ## Tech stack
 * ✅ MVVM with Clean Architecture
